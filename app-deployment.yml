@@ -40,9 +40,16 @@ spec:
       - name: lacework-sidecar
         # Lacework sidecar image.
         # Point the image to your appropriate sidecar image location
-        image: 950194951070.dkr.ecr.us-west-2.amazonaws.com/galen-lw-sidecar
+        image: 950194951070.dkr.ecr.us-west-2.amazonaws.com/heiser-keyed-min-sidecar:latest
         command: ["/bin/sh"]
         args: ["-c", "cp -R /shared/* /lacework"]
+        env:
+        - name: LaceworkAccessToken
+          value: 6a854b300593b58d56d5ed1aa09b585cfca672c798f1767ddb350bdd
+        - name: LaceworkRunAsEntrypoint
+          value: true
+        # - name: LW_CONFIG
+        #   value: "{\"tokens\": {\"AccessToken\": \"6a854b300593b58d56d5ed1aa09b585cfca672c798f1767ddb350bdd\"}}"
         volumeMounts:
         - name: lacework-shared
           mountPath: /lacework
@@ -105,7 +112,7 @@ spec:
       - name: lacework-sidecar
         # Lacework sidecar image.
         # Point the image to your appropriate sidecar image location
-        image: 950194951070.dkr.ecr.us-west-2.amazonaws.com/galen-lw-sidecar
+        image: 950194951070.dkr.ecr.us-west-2.amazonaws.com/heiser-keyed-min-sidecar:latest
         command: ["/bin/sh"]
         args: ["-c", "cp -R /shared/* /lacework"]
         volumeMounts:
@@ -127,6 +134,11 @@ spec:
           value: trust
         command: ["/shared/lacework.sh","/docker-entrypoint.sh"]
         args: ["postgres"]
+        env:
+        - name: LaceworkAccessToken
+          value: 6a854b300593b58d56d5ed1aa09b585cfca672c798f1767ddb350bdd
+        - name: LaceworkRunAsEntrypoint
+          value: true
         ports:
         - containerPort: 5432
           name: db
@@ -191,7 +203,7 @@ spec:
       - name: lacework-sidecar
         # Lacework sidecar image.
         # Point the image to your appropriate sidecar image location
-        image: 950194951070.dkr.ecr.us-west-2.amazonaws.com/galen-lw-sidecar
+        image: 950194951070.dkr.ecr.us-west-2.amazonaws.com/heiser-keyed-min-sidecar:latest
         command: ["/bin/sh"]
         args: ["-c", "cp -R /shared/* /lacework"]
         volumeMounts:
@@ -205,6 +217,11 @@ spec:
         imagePullPolicy: Always
         command: ["/shared/lacework.sh","docker-entrypoint.sh"]
         args: ["/tini","--","node","server.js"]
+        env:
+        - name: LaceworkAccessToken
+          value: 6a854b300593b58d56d5ed1aa09b585cfca672c798f1767ddb350bdd
+        - name: LaceworkRunAsEntrypoint
+          value: true
         ports:
         - containerPort: 80
           name: result
@@ -254,7 +271,7 @@ spec:
       - name: lacework-sidecar
         # Lacework sidecar image.
         # Point the image to your appropriate sidecar image location
-        image: 950194951070.dkr.ecr.us-west-2.amazonaws.com/galen-lw-sidecar
+        image: 950194951070.dkr.ecr.us-west-2.amazonaws.com/heiser-lw-sidecar-eks:latest
         command: ["/bin/sh"]
         args: ["-c", "cp -R /shared/* /lacework"]
         volumeMounts:
@@ -269,6 +286,11 @@ spec:
         # This container does not use entrypoint, so there's nothing else required here
         command: ["/shared/lacework.sh"]
         args: ["gunicorn","app:app","-b","0.0.0.0:80","--log-file","-","--access-logfile","-","--workers","4","--keep-alive","0"]
+        env:
+        - name: LaceworkAccessToken
+          value: 6a854b300593b58d56d5ed1aa09b585cfca672c798f1767ddb350bdd
+        - name: LaceworkRunAsEntrypoint
+          value: true
         ports:
         - containerPort: 80
           name: vote
@@ -314,7 +336,7 @@ spec:
       - name: lacework-sidecar
         # Lacework sidecar image.
         # Point the image to your appropriate sidecar image location
-        image: 950194951070.dkr.ecr.us-west-2.amazonaws.com/galen-lw-sidecar
+        image: 950194951070.dkr.ecr.us-west-2.amazonaws.com/heiser-lw-sidecar-eks:latest
         command: ["/bin/sh"]
         args: ["-c", "cp -R /shared/* /lacework"]
         volumeMounts:
