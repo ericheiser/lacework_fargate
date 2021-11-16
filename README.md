@@ -1,4 +1,6 @@
 # lacework_fargate
+
+[![CIS](https://app.soluble.cloud/api/v1/public/badges/2e2cec5d-66f7-4509-acb8-f2fe2857cdad.svg)](https://app.soluble.cloud/repos/details/github.com/ericheiser/lacework_fargate)  [![IaC](https://app.soluble.cloud/api/v1/public/badges/88f87843-5adf-4ad6-b49d-4aa828a5723e.svg)](https://app.soluble.cloud/repos/details/github.com/ericheiser/lacework_fargate)  
 Lacework Deployment mechanisms for Fargate
 
 Two important components here.  Currently the testing from this repository has been done against a specifically built container of the lw-sidecar.  Dockerfile for that is available in lw-sidecar/dockerfile.
